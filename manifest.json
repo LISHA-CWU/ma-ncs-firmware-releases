@@ -1,11 +1,4 @@
 {
-  "boards": {
-    "rma": {
-      "released_at": "2026-08-27T07:46:48Z",
-      "sha256": "a5b206e1a6fb2c37bf629843f5f4880f2ade20f39977597a020dd4d179b746fc",
-      "url": "https://github.com/LISHA-CWU/ma-ncs-firmware-releases/releases/download/v0.1.2/dfu_application.zip",
-      "version": "0.1.2"
-    }
-  },
-  "schema": 1
+  "schema": 1,
+  "boards": {}
 }
