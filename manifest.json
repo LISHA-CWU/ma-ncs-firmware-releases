@@ -1,7 +1,7 @@
 {
   "boards": {
     "rma": {
-      "latest": "0.2.2",
+      "latest": "0.2.3",
       "versions": {
         "0.1.3": {
           "image_hash": "6e3f30445aec5e5dd2a2b17aeb90bfd8c845289e419ea9bfcf849bbfd7f3c9ba",
@@ -26,6 +26,14 @@
           "tests_url": "https://github.com/LISHA-CWU/ma-ncs-firmware-releases/releases/download/v0.2.2/tests_v0.2.2.json",
           "zip_sha256": "da5be1e83073472a93986565e6808dcf4611f70e2e8a917b5c6500dd3c4c4c9f",
           "zip_url": "https://github.com/LISHA-CWU/ma-ncs-firmware-releases/releases/download/v0.2.2/dfu_rma_v0.2.2.zip"
+        },
+        "0.2.3": {
+          "image_hash": "deb33bba366aeb5363c1689f61f736d28a9d2ad3620fa988357489d7f52ee7a0",
+          "notes": "Published from ee418df4d2246d699afba5c0d9b68b88972af973",
+          "released_at": "2026-08-31T06:05:50Z",
+          "tests_url": "https://github.com/LISHA-CWU/ma-ncs-firmware-releases/releases/download/v0.2.3/tests_v0.2.3.json",
+          "zip_sha256": "c6740ae3443b2fec94677f569eb73722d6ce753fc9463a59a98ebf9fd7d52a74",
+          "zip_url": "https://github.com/LISHA-CWU/ma-ncs-firmware-releases/releases/download/v0.2.3/dfu_rma_v0.2.3.zip"
         }
       }
     }
