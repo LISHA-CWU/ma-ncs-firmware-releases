@@ -90,3 +90,52 @@ Each GitHub Release (tagged `vX.Y.Z`) carries three assets:
 
 Anyone can install the DFU package directly with Nordic's **nRF Connect
 Device Manager** app, independent of any custom client.
+
+## Installing a release
+
+### Over the air (normal path)
+
+Any device already running an MCUboot image can take a release without a
+debug probe:
+
+1. Install Nordic's **nRF Connect Device Manager** app (iOS/Android), or use
+   the NexGen Dashboard iOS app which drives the same MCUmgr flow.
+2. Download the `dfu_rma_vX.Y.Z.zip` asset for the board you have (check the device's
+   Device Information Service model string first) and get it onto the phone.
+3. Stop streaming, make sure the device is charging and above ~50% battery.
+4. In Device Manager: connect → **Image** tab → select the zip → **Test and
+   Confirm** (or **Test** + **Reset** to keep MCUboot's automatic revert).
+5. Verify the running image's hash against `image_hash` in `manifest.json`
+   via MCUmgr image state.
+
+### Over SWD (first flash or recovery)
+
+Every MA unit needs one SWD flash before it is DFU-capable. Download `merged_rma_vX.Y.Z.hex` from the release, then:
+
+- Install the **SEGGER J-Link Software and Documentation Pack**
+  (<https://www.segger.com/downloads/jlink/>) and **nRF Connect for
+  Desktop** (<https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-Desktop>).
+- Wire a J-Link (or an nRF52840 DK) to the board's SWDIO, SWDCLK, GND and
+  VTref pads with the board powered.
+- In nRF Connect for Desktop open **Programmer**, select the J-Link, **Add
+  file** the merged hex, and **Erase & write**. Or from a shell:
+
+  ```sh
+  nrfutil install device
+  nrfutil device program --firmware merged_<board>_vX.Y.Z.hex --options chip_erase_mode=ERASE_ALL
+  nrfutil device reset
+  ```
+
+## Building from source
+
+Source lives in [`ma-firmware`](https://github.com/LISHA-CWU/ma-firmware). Building it
+requires **nRF Connect SDK v3.1.1** and its toolchain:
+
+1. Install [VS Code](https://code.visualstudio.com/) and the **nRF Connect
+   for VS Code Extension Pack** (`nordic-semiconductor.nrf-connect-extension-pack`).
+2. From the extension's Welcome page, **Install Toolchain → v3.1.1** and
+   **Install SDK → v3.1.1** (or `nrfutil sdk-manager toolchain install
+   --ncs-version v3.1.1` and `nrfutil sdk-manager install v3.1.1`).
+3. Follow the **Getting started**, **Building** and **Flashing** sections of
+   that repo's README for the board target (`rma/nrf52840`) and the exact `west` /
+   VS Code steps.
